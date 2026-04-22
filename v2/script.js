@@ -264,6 +264,15 @@ if (contactForm) {
     });
 }
 
+// ===== Cloudinary Quality Helper =====
+// Inyecta q_auto:best en las URLs de Cloudinary para máxima calidad sin pérdidas visibles
+function cloudinaryHQ(url) {
+    if (!url || !url.includes('res.cloudinary.com')) return url;
+    // Evitar duplicar la transformación si ya existe
+    if (url.includes('/q_')) return url;
+    return url.replace('/image/upload/', '/image/upload/q_auto:best/');
+}
+
 // ===== Outdoor Gallery Modal =====
 (function () {
     const modal = document.getElementById('outdoor-gallery-modal');
@@ -311,7 +320,7 @@ if (contactForm) {
             const slide = document.createElement('div');
             slide.className = 'outdoor-carousel-slide';
             const img = document.createElement('img');
-            img.src = src;
+            img.src = cloudinaryHQ(src);
             img.alt = `${title} image ${idx + 1}`;
             slide.appendChild(img);
             track.appendChild(slide);
@@ -385,5 +394,11 @@ if (contactForm) {
 })();
 
 // La velocidad del vídeo de fondo está reducida directamente desde el propio archivo (inicio_slower.mp4)
+
+// ===== Cloudinary HQ para portadas de tarjetas =====
+// Aplica calidad máxima también a las imágenes de cover de cada outdoor-card
+document.querySelectorAll('.outdoor-card-image img').forEach(img => {
+    if (img.src) img.src = cloudinaryHQ(img.src);
+});
 
 
