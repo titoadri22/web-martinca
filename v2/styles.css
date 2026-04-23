@@ -2913,3 +2913,39 @@ img {
         margin-left: auto;
     }
 }
+/* ===== Pagination ===== */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 60px;
+    margin-bottom: 40px;
+}
+
+.page-link {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid var(--border-light);
+    color: var(--text-dark);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.page-link:hover {
+    background: var(--bg-cream);
+    border-color: var(--primary-accent);
+    color: var(--primary-accent);
+}
+
+.page-link.active {
+    background: var(--primary-accent);
+    color: var(--white);
+    border-color: var(--primary-accent);
+    font-weight: 600;
+}
