@@ -1,0 +1,13 @@
+# Variables de entorno - NUNCA subir al repositorio
+.env
+.env.local
+.env.*
+
+# Scripts de mantenimiento
+clean_blogs.py
+split_blog.py
+scratch2.py
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
