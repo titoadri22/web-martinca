@@ -314,7 +314,31 @@
             }
 
             .equipo-gallery {
-                grid-template-columns: 1fr 1fr;
+                flex-wrap: wrap;
+                height: auto;
+                gap: 16px;
+            }
+
+            .equipo-gallery img {
+                width: calc(50% - 8px);
+                height: 240px;
+                object-fit: cover;
+            }
+
+            .elegir-grid {
+                gap: 40px;
+            }
+
+            .experiencia-block {
+                gap: 40px;
+            }
+
+            .excelencia-grid {
+                gap: 40px;
+            }
+
+            .empresa-intro {
+                gap: 40px;
             }
         }
 
@@ -324,11 +348,41 @@
             }
 
             .equipo-gallery {
-                grid-template-columns: 1fr;
+                flex-direction: column;
+                height: auto;
+            }
+
+            .equipo-gallery img {
+                width: 100%;
+                height: auto;
+                aspect-ratio: 4/3;
+                object-fit: cover;
             }
 
             .empresa-cta {
-                padding: 80px 0;
+                padding: 60px 0;
+            }
+
+            .experiencia-counter {
+                padding: 40px 24px;
+            }
+
+            .excelencia-card {
+                padding: 28px 22px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .empresa-section {
+                padding: 50px 0;
+            }
+
+            .empresa-cta {
+                padding: 50px 0;
+            }
+
+            .elegir-list li {
+                font-size: 0.9rem;
             }
         }
     </style>

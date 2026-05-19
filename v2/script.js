@@ -396,9 +396,154 @@ function cloudinaryHQ(url) {
 // La velocidad del vídeo de fondo está reducida directamente desde el propio archivo (inicio_slower.mp4)
 
 // ===== Cloudinary HQ para portadas de tarjetas =====
-// Aplica calidad máxima también a las imágenes de cover de cada outdoor-card
 document.querySelectorAll('.outdoor-card-image img').forEach(img => {
     if (img.src) img.src = cloudinaryHQ(img.src);
 });
+
+// ===== Cookie Consent Banner =====
+(function () {
+    const CONSENT_KEY = 'martinca_consent';
+
+    function basePath() {
+        return window.location.pathname.includes('/blog/') ? '../' : '';
+    }
+
+    function inject() {
+        const base = basePath();
+
+        // Banner
+        const banner = document.createElement('div');
+        banner.id = 'cookie-banner';
+        banner.className = 'cookie-banner';
+        banner.innerHTML = `
+            <div class="cookie-banner-inner">
+                <div class="cookie-banner-text">
+                    <h3>Gestionar consentimiento</h3>
+                    <p>Para ofrecer las mejores experiencias, utilizamos cookies para almacenar y/o acceder a la información del dispositivo. Consulta nuestra <a href="${base}politica-cookies.html">Política de cookies</a> y <a href="${base}aviso-legal.html">Aviso legal</a>.</p>
+                </div>
+                <div class="cookie-banner-actions">
+                    <button class="cookie-btn cookie-btn--accept" id="ck-accept">Aceptar</button>
+                    <button class="cookie-btn cookie-btn--deny" id="ck-deny">Denegar</button>
+                    <button class="cookie-btn cookie-btn--prefs" id="ck-prefs">Ver preferencias</button>
+                </div>
+            </div>`;
+        document.body.appendChild(banner);
+
+        // Modal
+        const modal = document.createElement('div');
+        modal.id = 'cookie-modal';
+        modal.className = 'cookie-modal';
+        modal.innerHTML = `
+            <div class="cookie-modal-overlay" id="ck-overlay"></div>
+            <div class="cookie-modal-box">
+                <div class="cookie-modal-header">
+                    <h3>Preferencias de privacidad</h3>
+                    <button class="cookie-modal-close" id="ck-modal-close">&#x2715;</button>
+                </div>
+                <div class="cookie-modal-body">
+                    <p>Gestionamos tus preferencias de privacidad. Puedes activar o desactivar las categorías de cookies según tus preferencias. Las cookies funcionales son siempre necesarias para el correcto funcionamiento del sitio.</p>
+                    <div class="cookie-category">
+                        <div class="cookie-category-header">
+                            <div>
+                                <strong>Funcional</strong>
+                                <p>Necesarias para el funcionamiento del sitio web. No pueden desactivarse.</p>
+                            </div>
+                            <span class="cookie-always-active">Siempre activo</span>
+                        </div>
+                    </div>
+                    <div class="cookie-category">
+                        <div class="cookie-category-header">
+                            <div>
+                                <strong>Preferencias</strong>
+                                <p>Permiten recordar información que cambia el comportamiento del sitio (idioma, región, etc.).</p>
+                            </div>
+                            <label class="cookie-toggle"><input type="checkbox" id="pref-pref" checked><span class="cookie-toggle-slider"></span></label>
+                        </div>
+                    </div>
+                    <div class="cookie-category">
+                        <div class="cookie-category-header">
+                            <div>
+                                <strong>Estadísticas</strong>
+                                <p>Ayudan a entender cómo interactúan los visitantes con el sitio (páginas visitadas, clics, etc.).</p>
+                            </div>
+                            <label class="cookie-toggle"><input type="checkbox" id="pref-stats" checked><span class="cookie-toggle-slider"></span></label>
+                        </div>
+                    </div>
+                    <div class="cookie-category">
+                        <div class="cookie-category-header">
+                            <div>
+                                <strong>Marketing</strong>
+                                <p>Utilizadas para rastrear visitantes en webs y mostrar anuncios relevantes y personalizados.</p>
+                            </div>
+                            <label class="cookie-toggle"><input type="checkbox" id="pref-mkt"><span class="cookie-toggle-slider"></span></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="cookie-modal-footer">
+                    <button class="cookie-btn cookie-btn--deny" id="ck-save">Guardar preferencias</button>
+                    <button class="cookie-btn cookie-btn--accept" id="ck-accept-all">Aceptar todo</button>
+                </div>
+            </div>`;
+        document.body.appendChild(modal);
+
+        // Show banner
+        setTimeout(() => banner.classList.add('visible'), 700);
+
+        function save(prefs) {
+            localStorage.setItem(CONSENT_KEY, JSON.stringify({ ...prefs, date: new Date().toISOString() }));
+            banner.classList.remove('visible');
+            setTimeout(() => banner.remove(), 420);
+            modal.classList.remove('visible');
+        }
+
+        document.getElementById('ck-accept').onclick = () => save({ functional: true, preferences: true, statistics: true, marketing: true });
+        document.getElementById('ck-deny').onclick = () => save({ functional: true, preferences: false, statistics: false, marketing: false });
+        document.getElementById('ck-prefs').onclick = () => modal.classList.add('visible');
+        document.getElementById('ck-modal-close').onclick = () => modal.classList.remove('visible');
+        document.getElementById('ck-overlay').onclick = () => modal.classList.remove('visible');
+        document.getElementById('ck-accept-all').onclick = () => save({ functional: true, preferences: true, statistics: true, marketing: true });
+        document.getElementById('ck-save').onclick = () => save({
+            functional: true,
+            preferences: document.getElementById('pref-pref').checked,
+            statistics: document.getElementById('pref-stats').checked,
+            marketing: document.getElementById('pref-mkt').checked
+        });
+
+        // Escape key closes modal
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') modal.classList.remove('visible');
+        });
+    }
+
+    if (!localStorage.getItem(CONSENT_KEY)) {
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', inject);
+        } else {
+            inject();
+        }
+    }
+})();
+
+// ===== Footer Legal Links =====
+(function () {
+    function injectLegal() {
+        const base = window.location.pathname.includes('/blog/') ? '../' : '';
+        const footerBottom = document.querySelector('.footer-bottom .container');
+        if (!footerBottom) return;
+        const legal = document.createElement('div');
+        legal.className = 'footer-legal';
+        legal.innerHTML = `
+            <a href="${base}aviso-legal.html">Aviso legal</a>
+            <a href="${base}politica-cookies.html">Política de cookies</a>
+            <a href="${base}aviso-legal.html#privacidad">Política de privacidad</a>`;
+        footerBottom.appendChild(legal);
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', injectLegal);
+    } else {
+        injectLegal();
+    }
+})();
 
 

@@ -43,6 +43,7 @@
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 body {
@@ -52,6 +53,8 @@ body {
     background: var(--white);
     font-weight: 400;
     letter-spacing: 0.02em;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
 }
 
 .container {
@@ -194,6 +197,8 @@ body {
     gap: 12px;
     text-decoration: none;
     color: var(--text-dark);
+    min-width: 0;
+    flex-shrink: 1;
 }
 
 .logo-image {
@@ -277,6 +282,8 @@ body {
     border: none;
     cursor: pointer;
     padding: 5px;
+    flex-shrink: 0;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .hamburger span {
@@ -393,13 +400,12 @@ body {
 }
 
 /* Video Background */
-/* Video Background */
 .hero-video {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     min-width: 100%;
     min-height: 100%;
     object-fit: cover;
@@ -2361,16 +2367,24 @@ img {
     }
 
     .lang-toggle {
-        margin-right: 10px;
+        margin-right: 8px;
         margin-left: auto;
-        padding: 6px 10px;
+        padding: 5px 9px;
         font-size: 11px;
+        flex-shrink: 0;
     }
 
     .hero-badge {
         position: static;
-        height: 30px;
-        margin-left: 8px;
+        height: 26px;
+        margin-left: 6px;
+        flex-shrink: 0;
+    }
+
+    .logo-image {
+        height: 36px;
+        max-width: 120px;
+        object-fit: contain;
     }
 
     .hero h1 {
@@ -2408,6 +2422,10 @@ img {
 
     .galeria-grid {
         grid-template-columns: 1fr;
+    }
+
+    .section-header {
+        margin-bottom: 40px;
     }
 
     .section-header h2 {
@@ -2458,32 +2476,151 @@ img {
         letter-spacing: 3px;
         font-size: 1.8rem;
     }
+
+    /* Reduce section padding on mobile */
+    .galeria,
+    .blog,
+    .outdoor,
+    .valores,
+    .servicios,
+    .nosotros,
+    .filosofia,
+    .metodo,
+    .quienes-somos-section {
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
+
+    /* Responsive card images */
+    .outdoor-card-image {
+        height: auto;
+        aspect-ratio: 16 / 9;
+    }
+
+    .blog-card-image {
+        height: auto;
+        aspect-ratio: 16 / 9;
+    }
+
+    /* Nosotros image responsive height */
+    .nosotros-image img {
+        height: auto;
+        aspect-ratio: 4 / 3;
+    }
+
+    /* Gallery gap reduce on mobile */
+    .galeria-grid {
+        gap: 20px;
+    }
+
+    /* img-crop: reset pre-applied scale transforms on mobile to avoid distortion */
+    .galeria-item img.img-crop--kitchen,
+    .galeria-item img.img-crop--pool-top,
+    .galeria-item img.img-crop--dining,
+    .galeria-item img.img-crop--shower,
+    .galeria-item img.img-crop--facade-urban,
+    .galeria-item img.img-crop--window {
+        transform: scale(1.05);
+    }
+
+    /* Blog card content padding */
+    .blog-card-content {
+        padding: 22px;
+    }
+
+    /* Outdoor card content */
+    .outdoor-card-content {
+        padding: 22px;
+    }
+
+    /* Contacto adjustments */
+    .contacto-info,
+    .contacto-form {
+        padding: 28px 22px;
+    }
 }
 
 @media (max-width: 480px) {
     .container {
-        padding: 0 20px;
+        padding: 0 16px;
     }
 
     .hero-content {
-        padding: 100px 20px 60px;
+        padding: 100px 16px 60px;
     }
 
     .hero h1 {
-        font-size: 1.9rem;
+        font-size: 1.75rem;
+    }
+
+    .hero h1 .highlight {
+        font-size: 1.5rem;
+        letter-spacing: 2px;
     }
 
     .hero-image {
-        height: 280px;
+        height: 250px;
     }
 
     .servicio-card {
-        padding: 35px 25px;
+        padding: 28px 20px;
     }
 
     .contacto-info,
     .contacto-form {
-        padding: 28px;
+        padding: 24px 18px;
+    }
+
+    /* Hero badge hide on very small screens to give room to hamburger */
+    .hero-badge {
+        display: none;
+    }
+
+    .logo-image {
+        height: 32px;
+        max-width: 105px;
+    }
+
+    .lang-toggle {
+        padding: 4px 8px;
+        font-size: 10px;
+        margin-right: 6px;
+    }
+
+    .hamburger span {
+        width: 22px;
+    }
+
+    /* Section padding smaller */
+    .galeria,
+    .blog,
+    .outdoor,
+    .valores,
+    .servicios,
+    .nosotros,
+    .filosofia,
+    .metodo,
+    .quienes-somos-section {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+
+    .section-header {
+        margin-bottom: 30px;
+    }
+
+    .section-header h2 {
+        font-size: 1.6rem;
+    }
+
+    .galeria-filtros {
+        gap: 8px;
+        margin-bottom: 30px;
+    }
+
+    .filtro-btn {
+        padding: 9px 18px;
+        font-size: 12px;
     }
 }
 
@@ -2550,6 +2687,25 @@ img {
 
 .blog-post-content figure {
     margin: 40px 0;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+/* WordPress block image responsive */
+.wp-block-image,
+.aligncenter,
+.alignfull,
+.alignwide {
+    max-width: 100%;
+    height: auto;
+}
+
+.wp-block-image img,
+.aligncenter img,
+figure img {
+    max-width: 100%;
+    height: auto;
+    display: block;
 }
 
 .blog-post-content figcaption {
@@ -2589,7 +2745,7 @@ img {
 
 /* Header Section */
 .blog-post-header-section {
-    padding: 180px 0 80px;
+    padding: clamp(100px, 20vw, 180px) 0 clamp(50px, 8vw, 80px);
     background: var(--bg-dark);
     color: var(--white);
     text-align: center;
@@ -2948,4 +3104,457 @@ img {
     color: var(--white);
     border-color: var(--primary-accent);
     font-weight: 600;
+}
+
+/* ===== Outdoor Modal Landscape Mobile ===== */
+@media (max-width: 768px) and (orientation: landscape) {
+    .outdoor-modal-container {
+        padding: 35px 15px 10px;
+        overflow-y: auto;
+    }
+
+    .outdoor-carousel {
+        height: 65vh;
+        min-height: 180px;
+    }
+}
+
+/* ===== Tiny phones (360px and below) ===== */
+@media (max-width: 360px) {
+    .container {
+        padding: 0 14px;
+    }
+
+    .hero-content {
+        padding: 90px 14px 50px;
+    }
+
+    .hero h1 {
+        font-size: 1.55rem;
+    }
+
+    .logo-image {
+        height: 28px;
+        max-width: 90px;
+    }
+
+    .hero-badge {
+        display: none;
+    }
+
+    .lang-toggle {
+        padding: 4px 7px;
+        font-size: 9px;
+        margin-right: 4px;
+    }
+
+    .hamburger span {
+        width: 20px;
+    }
+
+    .section-header h2 {
+        font-size: 1.4rem;
+    }
+
+    .header-content {
+        height: 68px;
+    }
+
+    .nav {
+        top: 68px;
+    }
+
+    .galeria,
+    .blog,
+    .outdoor,
+    .valores,
+    .servicios,
+    .nosotros,
+    .filosofia,
+    .metodo {
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+}
+
+/* ===== Ensure all images are responsive ===== */
+img {
+    max-width: 100%;
+}
+
+/* ===== Touch targets - minimum 44px for accessibility ===== */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 20px;
+    }
+
+    .hamburger {
+        padding: 10px 8px;
+        min-width: 44px;
+        min-height: 44px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .nav-link {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        padding: 8px 0;
+    }
+
+    /* Blog post content responsive */
+    .blog-post-content {
+        padding: 50px 0;
+        font-size: 0.97rem;
+    }
+
+    .blog-post-content img {
+        margin: 24px 0;
+    }
+}
+
+/* ===== Cookie Consent Banner ===== */
+.cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 99998;
+    background: var(--primary-dark);
+    border-top: 1px solid rgba(201, 169, 98, 0.3);
+    padding: 24px 0;
+    transform: translateY(100%);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cookie-banner.visible {
+    transform: translateY(0);
+}
+
+.cookie-banner-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 60px;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.cookie-banner-text {
+    flex: 1;
+    min-width: 0;
+}
+
+.cookie-banner-text h3 {
+    color: var(--white);
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+    letter-spacing: 0.3px;
+}
+
+.cookie-banner-text p {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.82rem;
+    line-height: 1.6;
+}
+
+.cookie-banner-text a {
+    color: var(--primary-accent);
+    text-decoration: underline;
+}
+
+.cookie-banner-actions {
+    display: flex;
+    gap: 10px;
+    flex-shrink: 0;
+    align-items: center;
+}
+
+.cookie-btn {
+    padding: 11px 22px;
+    border-radius: 100px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.cookie-btn--accept {
+    background: var(--primary-accent);
+    color: var(--primary-dark);
+}
+
+.cookie-btn--accept:hover {
+    background: var(--accent-gold);
+}
+
+.cookie-btn--deny {
+    background: transparent;
+    color: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.cookie-btn--deny:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+    color: var(--white);
+}
+
+.cookie-btn--prefs {
+    background: transparent;
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 11px;
+    text-decoration: underline;
+    padding: 11px 8px;
+    border: none;
+}
+
+.cookie-btn--prefs:hover {
+    color: var(--white);
+}
+
+/* ===== Cookie Preferences Modal ===== */
+.cookie-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.cookie-modal.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.cookie-modal-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+.cookie-modal-box {
+    position: relative;
+    z-index: 1;
+    background: var(--white);
+    border-radius: 16px;
+    max-width: 560px;
+    width: 92%;
+    max-height: 88vh;
+    overflow-y: auto;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
+}
+
+.cookie-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 28px 32px 0;
+    position: sticky;
+    top: 0;
+    background: var(--white);
+    z-index: 2;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.cookie-modal-header h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.cookie-modal-close {
+    background: none;
+    border: none;
+    font-size: 26px;
+    cursor: pointer;
+    color: var(--text-muted);
+    line-height: 1;
+    padding: 4px;
+    transition: color 0.2s;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.cookie-modal-close:hover {
+    color: var(--text-dark);
+}
+
+.cookie-modal-body {
+    padding: 20px 32px 4px;
+}
+
+.cookie-modal-body > p {
+    font-size: 0.87rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 8px;
+}
+
+.cookie-category {
+    border-top: 1px solid var(--border-light);
+    padding: 16px 0;
+}
+
+.cookie-category-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.cookie-category-header > div strong {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 4px;
+}
+
+.cookie-category-header > div p {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+.cookie-always-active {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--primary-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+/* Toggle switch */
+.cookie-toggle {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+.cookie-toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    position: absolute;
+}
+
+.cookie-toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    inset: 0;
+    background: var(--border-light);
+    border-radius: 100px;
+    transition: background 0.3s;
+}
+
+.cookie-toggle-slider::before {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    left: 3px;
+    top: 3px;
+    background: var(--white);
+    border-radius: 50%;
+    transition: transform 0.3s;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.cookie-toggle input:checked + .cookie-toggle-slider {
+    background: var(--primary-accent);
+}
+
+.cookie-toggle input:checked + .cookie-toggle-slider::before {
+    transform: translateX(20px);
+}
+
+.cookie-modal-footer {
+    padding: 16px 32px 24px;
+    display: flex;
+    gap: 12px;
+    position: sticky;
+    bottom: 0;
+    background: var(--white);
+    border-top: 1px solid var(--border-light);
+    margin-top: 8px;
+}
+
+.cookie-modal-footer .cookie-btn {
+    flex: 1;
+}
+
+/* ===== Footer Legal Links ===== */
+.footer-legal {
+    display: flex;
+    gap: 20px;
+    margin-top: 6px;
+    flex-wrap: wrap;
+}
+
+.footer-legal a {
+    color: rgba(255, 255, 255, 0.35);
+    font-size: 0.78rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    letter-spacing: 0.2px;
+}
+
+.footer-legal a:hover {
+    color: var(--primary-accent);
+}
+
+/* Responsive cookie & WhatsApp */
+@media (max-width: 768px) {
+    .cookie-banner-inner {
+        flex-direction: column;
+        padding: 0 20px;
+        gap: 16px;
+        align-items: stretch;
+    }
+
+    .cookie-banner-actions {
+        flex-wrap: wrap;
+    }
+
+    .cookie-btn--accept,
+    .cookie-btn--deny {
+        flex: 1;
+        text-align: center;
+    }
+
+    .cookie-btn--prefs {
+        width: 100%;
+        text-align: center;
+    }
+
+    .cookie-modal-header,
+    .cookie-modal-body {
+        padding-left: 22px;
+        padding-right: 22px;
+    }
+
+    .cookie-modal-footer {
+        padding: 14px 22px 20px;
+    }
+
+    .footer-legal {
+        gap: 14px;
+    }
 }
