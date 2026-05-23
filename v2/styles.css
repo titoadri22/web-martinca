@@ -3558,3 +3558,397 @@ img {
         gap: 14px;
     }
 }
+
+/* ============================================================
+   MEJORAS RESPONSIVE MÓVIL - pantallas estrechas y largas
+   ============================================================ */
+
+/* ----- 768px: ajustes generales ----- */
+@media (max-width: 768px) {
+
+    /* Outdoor cards: imagen más compacta */
+    .outdoor-card-image {
+        height: 220px;
+    }
+
+    /* Outdoor card content: menos padding */
+    .outdoor-card-content {
+        padding: 24px 20px;
+    }
+
+    /* Btn modal full-width en móvil */
+    .btn-outdoor-modal {
+        width: 100%;
+        justify-content: center;
+        padding: 12px 20px;
+        font-size: 0.88rem;
+    }
+
+    /* Modal carousel altura reducida */
+    .outdoor-carousel {
+        height: 55vh;
+        min-height: 220px;
+    }
+
+    /* Blog post header menos padding */
+    .blog-post-header-section {
+        padding: clamp(90px, 15vw, 130px) 0 clamp(40px, 6vw, 60px);
+    }
+
+    /* Blog post title más pequeño */
+    .blog-post-title-large {
+        font-size: clamp(1.6rem, 5vw, 2.4rem);
+        padding: 0 4px;
+    }
+
+    /* Filosofia */
+    .filosofia-image {
+        height: 280px;
+    }
+
+    /* Valores cards padding reducido */
+    .valor-card {
+        padding: 36px 20px;
+    }
+
+    /* Metodo items */
+    .metodo-item {
+        padding: 24px 16px;
+    }
+    .metodo-number {
+        font-size: 3.5rem;
+    }
+
+    /* Prevenir scroll horizontal */
+    body {
+        overflow-x: hidden;
+    }
+    .container,
+    section,
+    header,
+    footer {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+}
+
+/* ----- 480px: móvil estándar ----- */
+@media (max-width: 480px) {
+
+    /* Hero */
+    .hero-content {
+        padding: 100px 16px 60px;
+    }
+    .hero-title-centered {
+        font-size: clamp(2.4rem, 14vw, 4rem);
+        letter-spacing: 0.12em;
+    }
+    .hero-subtitle-centered {
+        font-size: clamp(0.75rem, 3.5vw, 1rem);
+        letter-spacing: 0.06em;
+    }
+
+    /* Secciones */
+    .galeria,
+    .blog,
+    .outdoor,
+    .valores,
+    .servicios,
+    .nosotros,
+    .filosofia,
+    .metodo,
+    .quienes-somos-section {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+
+    /* Section header */
+    .section-header {
+        margin-bottom: 28px;
+    }
+    .section-header h2 {
+        font-size: 1.55rem;
+    }
+    .section-header p {
+        font-size: 0.93rem;
+    }
+
+    /* Servicio cards */
+    .servicio-card {
+        padding: 28px 0;
+    }
+    .servicio-card h3 {
+        font-size: 1.15rem;
+    }
+
+    /* Outdoor */
+    .outdoor-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+    .outdoor-card-image {
+        height: 200px;
+    }
+    .outdoor-card-content {
+        padding: 20px 16px;
+    }
+
+    /* Blog */
+    .blog-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    .blog-card-content {
+        padding: 18px 16px;
+    }
+    .blog-card h3 {
+        font-size: 1rem;
+    }
+
+    /* Valores */
+    .valores-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    .valor-card {
+        padding: 28px 16px;
+    }
+
+    /* Galería filtros: scroll horizontal sin wrap */
+    .galeria-filtros {
+        gap: 8px;
+        justify-content: flex-start;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 4px;
+        scrollbar-width: none;
+    }
+    .galeria-filtros::-webkit-scrollbar {
+        display: none;
+    }
+    .filtro-btn {
+        white-space: nowrap;
+        flex-shrink: 0;
+        padding: 8px 14px;
+        font-size: 11px;
+    }
+
+    /* Galería grid: 2 columnas */
+    .galeria-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    /* Filosofia */
+    .filosofia-content {
+        gap: 30px;
+    }
+    .filosofia-image {
+        height: 240px;
+    }
+
+    /* Metodo */
+    .metodo-grid {
+        gap: 16px;
+    }
+    .metodo-number {
+        font-size: 3rem;
+    }
+
+    /* Contacto: font-size 16px evita zoom en iOS */
+    .contacto-info,
+    .contacto-form {
+        padding: 22px 16px;
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        font-size: 16px;
+        padding: 12px 14px;
+    }
+
+    /* Footer */
+    .footer-content {
+        gap: 28px;
+    }
+
+    /* Blog post */
+    .blog-post-header-section {
+        padding: 90px 0 40px;
+    }
+    .blog-post-title-large {
+        font-size: 1.5rem;
+    }
+    .blog-post-content {
+        font-size: 0.93rem;
+        padding: 40px 0;
+    }
+    .blog-post-content h2 {
+        font-size: 1.4rem;
+        margin-top: 40px;
+    }
+    .blog-post-content h3 {
+        font-size: 1.15rem;
+    }
+    .blog-highlight-box {
+        padding: 22px 16px;
+    }
+
+    /* Paginación */
+    .pagination {
+        gap: 6px;
+        margin-top: 40px;
+    }
+    .page-link {
+        width: 36px;
+        height: 36px;
+        font-size: 0.85rem;
+    }
+
+    /* Modal outdoor */
+    .outdoor-modal-container {
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+        padding: 50px 12px 16px;
+    }
+    .outdoor-carousel {
+        height: 52vh;
+    }
+}
+
+/* ----- 390px: iPhone 14 / Galaxy S ----- */
+@media (max-width: 390px) {
+
+    .container {
+        padding: 0 14px;
+    }
+
+    /* Header */
+    .header-content {
+        height: 68px;
+    }
+    .nav {
+        top: 68px;
+    }
+    .logo-image {
+        height: 30px;
+        max-width: 100px;
+    }
+    .lang-toggle {
+        padding: 5px 8px;
+        font-size: 10px;
+        margin-right: 6px;
+        gap: 4px;
+    }
+    .lang-toggle svg {
+        width: 14px;
+        height: 14px;
+    }
+
+    /* Hero */
+    .hero-content {
+        padding: 88px 14px 50px;
+    }
+    .hero-title-centered {
+        font-size: clamp(2rem, 13vw, 3.2rem);
+        letter-spacing: 0.08em;
+    }
+    .hero-subtitle-centered {
+        font-size: 0.72rem;
+        letter-spacing: 0.04em;
+    }
+
+    /* Sections más compactas */
+    .galeria,
+    .blog,
+    .outdoor,
+    .valores,
+    .servicios,
+    .nosotros,
+    .filosofia,
+    .metodo,
+    .quienes-somos-section {
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+
+    .section-header h2 {
+        font-size: 1.4rem;
+    }
+
+    /* Gallery 1 col en muy estrecho */
+    .galeria-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    /* Outdoor */
+    .outdoor-card-image {
+        height: 180px;
+    }
+
+    /* Valores */
+    .valor-card {
+        padding: 24px 12px;
+    }
+
+    /* Blog */
+    .blog-card-image {
+        height: auto;
+        aspect-ratio: 16 / 9;
+    }
+
+    /* Btn outdoor */
+    .btn-outdoor-modal {
+        font-size: 0.82rem;
+        padding: 10px 16px;
+    }
+
+    /* Blog post */
+    .blog-post-title-large {
+        font-size: 1.35rem;
+    }
+
+    /* Filosofia */
+    .filosofia-image {
+        height: 210px;
+    }
+
+    /* Cookie */
+    .cookie-banner-inner {
+        padding: 0 14px;
+        gap: 12px;
+    }
+    .cookie-btn {
+        padding: 9px 14px;
+        font-size: 11px;
+    }
+}
+
+/* ----- 360px: teléfonos muy pequeños ----- */
+@media (max-width: 360px) {
+
+    .hero-title-centered {
+        font-size: clamp(1.8rem, 12vw, 2.8rem);
+        letter-spacing: 0.06em;
+    }
+
+    .section-header h2 {
+        font-size: 1.25rem;
+    }
+
+    .outdoor-card-image {
+        height: 160px;
+    }
+
+    .blog-post-title-large {
+        font-size: 1.2rem;
+    }
+
+    .contacto-info,
+    .contacto-form {
+        padding: 18px 12px;
+    }
+}
