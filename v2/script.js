@@ -461,24 +461,6 @@ document.querySelectorAll('.outdoor-card-image img').forEach(img => {
                             <label class="cookie-toggle"><input type="checkbox" id="pref-pref" checked><span class="cookie-toggle-slider"></span></label>
                         </div>
                     </div>
-                    <div class="cookie-category">
-                        <div class="cookie-category-header">
-                            <div>
-                                <strong>Estadísticas</strong>
-                                <p>Ayudan a entender cómo interactúan los visitantes con el sitio (páginas visitadas, clics, etc.).</p>
-                            </div>
-                            <label class="cookie-toggle"><input type="checkbox" id="pref-stats" checked><span class="cookie-toggle-slider"></span></label>
-                        </div>
-                    </div>
-                    <div class="cookie-category">
-                        <div class="cookie-category-header">
-                            <div>
-                                <strong>Marketing</strong>
-                                <p>Utilizadas para rastrear visitantes en webs y mostrar anuncios relevantes y personalizados.</p>
-                            </div>
-                            <label class="cookie-toggle"><input type="checkbox" id="pref-mkt"><span class="cookie-toggle-slider"></span></label>
-                        </div>
-                    </div>
                 </div>
                 <div class="cookie-modal-footer">
                     <button class="cookie-btn cookie-btn--deny" id="ck-save">Guardar preferencias</button>
@@ -497,17 +479,15 @@ document.querySelectorAll('.outdoor-card-image img').forEach(img => {
             modal.classList.remove('visible');
         }
 
-        document.getElementById('ck-accept').onclick = () => save({ functional: true, preferences: true, statistics: true, marketing: true });
-        document.getElementById('ck-deny').onclick = () => save({ functional: true, preferences: false, statistics: false, marketing: false });
+        document.getElementById('ck-accept').onclick = () => save({ functional: true, preferences: true });
+        document.getElementById('ck-deny').onclick = () => save({ functional: true, preferences: false });
         document.getElementById('ck-prefs').onclick = () => modal.classList.add('visible');
         document.getElementById('ck-modal-close').onclick = () => modal.classList.remove('visible');
         document.getElementById('ck-overlay').onclick = () => modal.classList.remove('visible');
-        document.getElementById('ck-accept-all').onclick = () => save({ functional: true, preferences: true, statistics: true, marketing: true });
+        document.getElementById('ck-accept-all').onclick = () => save({ functional: true, preferences: true });
         document.getElementById('ck-save').onclick = () => save({
             functional: true,
-            preferences: document.getElementById('pref-pref').checked,
-            statistics: document.getElementById('pref-stats').checked,
-            marketing: document.getElementById('pref-mkt').checked
+            preferences: document.getElementById('pref-pref').checked
         });
 
         // Escape key closes modal

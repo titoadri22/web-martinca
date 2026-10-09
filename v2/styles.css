@@ -3500,6 +3500,16 @@ img {
     flex: 1;
 }
 
+.cookie-modal-footer .cookie-btn--deny {
+    color: var(--primary-dark);
+    border-color: rgba(0, 0, 0, 0.25);
+}
+
+.cookie-modal-footer .cookie-btn--deny:hover {
+    color: var(--primary-dark);
+    border-color: rgba(0, 0, 0, 0.5);
+}
+
 /* ===== Footer Legal Links ===== */
 .footer-legal {
     display: flex;
