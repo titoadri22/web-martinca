@@ -419,12 +419,13 @@ document.querySelectorAll('.outdoor-card-image img').forEach(img => {
             <div class="cookie-banner-inner">
                 <div class="cookie-banner-text">
                     <h3>Gestionar consentimiento</h3>
-                    <p>Para ofrecer las mejores experiencias, utilizamos cookies para almacenar y/o acceder a la información del dispositivo. Consulta nuestra <a href="${base}politica-cookies.html">Política de cookies</a> y <a href="${base}aviso-legal.html">Aviso legal</a>.</p>
+                    <p>Utilizamos cookies para mejorar tu experiencia. Puedes aceptar, rechazar o personalizar la utilización de cookies, u obtener más información en nuestra <a href="${base}politica-cookies.html">política de cookies</a>.</p>
                 </div>
                 <div class="cookie-banner-actions">
                     <button class="cookie-btn cookie-btn--accept" id="ck-accept">Aceptar</button>
-                    <button class="cookie-btn cookie-btn--deny" id="ck-deny">Denegar</button>
-                    <button class="cookie-btn cookie-btn--prefs" id="ck-prefs">Ver preferencias</button>
+                    <button class="cookie-btn cookie-btn--deny" id="ck-deny">Rechazar</button>
+                    <button class="cookie-btn cookie-btn--prefs" id="ck-prefs">Personalizar</button>
+                    <a class="cookie-btn cookie-btn--prefs" href="${base}politica-cookies.html">Más información</a>
                 </div>
             </div>`;
         document.body.appendChild(banner);
